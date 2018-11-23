@@ -1,0 +1,48 @@
+/**
+ * Defines a data model for the registration of car accidents
+ * for emergency services and insurance companies
+ */ 
+
+namespace car.registrry.accidents
+import  car.registrry.persons.CaseWorker
+import  car.registrry.companies.InsuranceCompany 
+import  car.registrry.vehicles.Vehicle
+enum AccidentStatus {
+o OPEN
+o ASSIGNED
+o SEND_TO_INSURER
+o RESOLVED 
+}
+concept Goods  {
+-->Vehicle[] vehicles optional
+-->InsuranceCompany[] insurers optional
+}
+concept Location {
+o Long longitude
+o Long latitude
+o String description optional
+}
+asset Accident identified by accidentId {
+ o String accidentId
+ o String description
+ o AccidentStatus status
+ o Location location
+ o Goods goods
+ --> CaseWorker assignee optional
+}
+
+transaction RegisterAccident {
+ o Accident accident
+}
+transaction AssignToCaseWorker {
+ --> Accident accident
+ --> CaseWorker assignee
+}
+transaction SendToInsurance {
+o String accidentId
+--> InsuranceCompany[] insurers
+
+}
+transaction ResolveAccident {
+o String accidentId
+}
