@@ -1,0 +1,17 @@
+/**
+ *  Contains the definitions for vehicles
+ */
+
+namespace car.registrry.vehicles
+import  car.registrry.persons.Driver
+import  car.registrry.companies.InsuranceCompany
+asset Vehicle identified by VIN {
+o String VIN
+o String brand
+o String licencePlate
+--> InsuranceCompany insurer
+--> Driver owner
+
+
+
+}
