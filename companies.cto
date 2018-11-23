@@ -1,0 +1,19 @@
+/**
+ * New model file
+ */
+
+namespace car.registrry.companies
+import  car.registrry.persons.Person
+import  car.registrry.persons.Responder
+import  car.registrry.accidents.Accident
+abstract asset Company identified by name {
+ o String name
+}
+asset  InsuranceCompany extends Company {
+--> Person contact optional
+-->Accident[] cases
+}
+asset  EmergencyService  extends Company {
+--> Responder[] respenders
+}
+co
